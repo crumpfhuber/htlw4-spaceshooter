@@ -5,23 +5,36 @@ from flask import jsonify
 
 # connect to database server
 # for more information, see database.py
+conn.autocommit = True
 cur = conn.cursor()
 
 # create flask and api
 app = Flask(__name__)
 api = Api(app)
 
-# get user by id
-@app.route('/user/<int:user_id>', methods=['GET'])
-def route_user_get(user_id):
-    cur.execute("SELECT * FROM `user` WHERE `id` = ?", (int(user_id),))
+# get user information by email and username
+@app.route('/user/<email>/<username>', methods=['GET'])
+def route_user_get(email, username):
+    cur.execute("SELECT * FROM `user` WHERE `email` = ? AND `username` = ?", (email, username, ))
     row_headers = [x[0] for x in cur.description]
     rv = cur.fetchall()
     json_data = []
     for result in rv: json_data.append(dict(zip(row_headers, result)))
     return jsonify(json_data)
 
+# register user
+# success: return user id
+# error: return -1
+@app.route('/user', methods=['PUT'])
+def route_user_put():
+    email = request.args.get('email', '')
+    username = request.args.get('username', '')
+    cur.execute("INSERT INTO `user`(`username`, `email`) VALUES (?, ?)", (username, email))
+    return cur.warnings == 0 and route_user_get(email, username) or 'false'
+
 # get statistics by id
+# success: array with statistics
+# error: empty array
 @app.route('/statistics/<int:user_id>', methods=['GET'])
 def route_statistics_get(user_id):
     cur.execute("SELECT * FROM `statistic` WHERE `user_id` = ?", (int(user_id),))
