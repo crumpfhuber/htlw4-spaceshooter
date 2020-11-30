@@ -7,6 +7,7 @@ steps:
 - name: publish docker container
   image: plugins/docker
   settings:
+    custom_dns: 172.16.10.39
     repo: docker-registry.rumpfhuber.icu/crumpfhuber/htlw4-spaceshooter
     registry: docker-registry.rumpfhuber.icu
     tags: latest
