@@ -12,3 +12,5 @@ steps:
   settings:
     repo: docker-registry.rumpfhuber.icu/crumpfhuber/htlw4-spaceshooter
     registry: docker-registry.rumpfhuber.icu
+    tags: latest
+    dockerfile: Dockerfile
