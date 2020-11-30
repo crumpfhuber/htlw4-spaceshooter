@@ -3,6 +3,10 @@ kind: pipeline
 type: docker
 name: restful
 
+platform:
+  os: linux
+  arch: arm
+
 steps:
 - name: publish docker container
   image: plugins/docker
