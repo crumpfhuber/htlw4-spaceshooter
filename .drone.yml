@@ -8,6 +8,6 @@ steps:
   image: plugins/docker
   settings:
     repo: docker-registry.rumpfhuber.icu/crumpfhuber/htlw4-spaceshooter
-    registry: 172.16.10.30
+    registry: docker-registry.rumpfhuber.icu
     tags: latest
     dockerfile: ./Dockerfile
