@@ -1,5 +1,10 @@
+---
 kind: pipeline
-name: default
+type: ssh
+name: restful
+
+clone:
+  disable: true
 
 steps:
 - name: publish docker container
