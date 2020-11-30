@@ -2,9 +2,6 @@
 kind: pipeline
 name: restful
 
-clone:
-  disable: true
-
 steps:
 - name: publish docker container
   image: plugins/docker
@@ -12,4 +9,4 @@ steps:
     repo: docker-registry.rumpfhuber.icu/crumpfhuber/htlw4-spaceshooter
     registry: docker-registry.rumpfhuber.icu
     tags: latest
-    dockerfile: Dockerfile
+    dockerfile: ./Dockerfile
