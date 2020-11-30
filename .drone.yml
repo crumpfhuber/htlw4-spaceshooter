@@ -1,0 +1,9 @@
+kind: pipeline
+name: default
+
+steps:
+- name: publish docker container
+  image: plugins/docker
+  settings:
+    repo: docker-registry.rumpfhuber.icu/crumpfhuber/htlw4-spaceshooter
+    registry: docker-registry.rumpfhuber.icu
