@@ -16,3 +16,17 @@ steps:
     registry: docker-registry.rumpfhuber.icu
     tags: latest
     dockerfile: ./Dockerfile
+
+
+- name: update docker on host
+  image: appleboy/drone-ssh
+  settings:
+    host: 172.16.10.47
+    username:
+      from_secret: ssh_username
+    password:
+      from_secret: ssh_password
+    port: 22
+    script:
+      - docker pull docker-registry.rumpfhuber.icu/crumpfhuber/htlw4-spaceshooter
+      - docker run -d --name spaceshooter --network="Unifi-Network" --ip=172.16.10.55 --hostname="mediaweb" --domainname="rumpfhuber.icu" --restart=always -it crumpfhuber/spaceshooter:latest
