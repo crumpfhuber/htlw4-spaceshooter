@@ -29,4 +29,6 @@ steps:
     port: 22
     script:
       - docker pull docker-registry.rumpfhuber.icu/crumpfhuber/htlw4-spaceshooter
-      - docker run -d --name spaceshooter --network="Unifi-Network" --ip=172.16.10.55 --hostname="mediaweb" --domainname="rumpfhuber.icu" --restart=always -it crumpfhuber/spaceshooter:latest
+      - docker stop spaceshooter
+      - docker rm spaceshooter
+      - docker run -d --name spaceshooter --network="Unifi-Network" --ip=172.16.10.55 --hostname="mediaweb" --domainname="rumpfhuber.icu" --restart=always -it docker-registry.rumpfhuber.icu/crumpfhuber/htlw4-spaceshooter:latest
