@@ -49,4 +49,4 @@ def route_statistics_get(user_id):
 if __name__ == '__main__':
     # print(db.table_names())
     # print(app.url_map)
-    app.run(port='5001', debug=True)
+    app.run(host='0.0.0.0', port='5001', debug=True)
