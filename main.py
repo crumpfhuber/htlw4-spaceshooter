@@ -13,9 +13,9 @@ app = Flask(__name__)
 api = Api(app)
 
 # get user information by email and username
-@app.route('/user/<email>/<username>', methods=['GET'])
-def route_user_get(email, username):
-    cur.execute("SELECT * FROM `user` WHERE `email` = ? AND `username` = ?", (email, username, ))
+@app.route('/user/<username>', methods=['GET'])
+def route_user_get(username):
+    cur.execute("SELECT * FROM `user` WHERE `username` = ?", (username, ))
     row_headers = [x[0] for x in cur.description]
     rv = cur.fetchall()
     json_data = []
