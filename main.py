@@ -44,6 +44,14 @@ def route_statistics_get(user_id):
     for result in rv: json_data.append(dict(zip(row_headers, result)))
     return jsonify(json_data)
 
+# add statistic by id
+# success: return statistic id
+# error: return -1
+@app.route('/statistics/<int:user_id>', methods=['PUT'])
+def route_statistics_put(user_id):
+    points = request.args.get('points', '')
+    cur.execute("INSERT INTO `statistic`(`user_id`, `points`) VALUES (?, ?)", (user_id, points))
+    return cur.warnings == 0 and route_statistics_get(user_id) or 'false'
 
 # run main
 if __name__ == '__main__':
