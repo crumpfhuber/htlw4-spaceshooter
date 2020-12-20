@@ -47,7 +47,7 @@ def route_statistics_get(user_id):
 # add statistic by id
 # success: return statistic id
 # error: return -1
-@app.route('/statistics/<int:user_id>', methods=['PUT'])
+@app.route('/statistics/<int:user_id>', methods=['POST'])
 def route_statistics_put(user_id):
     points = request.args.get('points', '')
     cur.execute("INSERT INTO `statistic`(`user_id`, `points`) VALUES (?, ?)", (user_id, points))
